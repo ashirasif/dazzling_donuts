@@ -41,14 +41,10 @@ export function Model(props: JSX.IntrinsicElements["group"]) {
         receiveShadow
         geometry={nodes.Torus.geometry}
         position={[0, -0.001, 0]}
+        material={materials['bread']}
       >
-        <meshStandardMaterial
-          color={"#b17127"}
-          transparent={true}
-          opacity={0.5}
-        />
       </mesh>
-      {/* <mesh castShadow receiveShadow geometry={nodes.Torus001.geometry} material={materials['Material.001']} position={[0, 0.036, 0]} scale={[0.992, 1.11, 0.992]} /> */}
+      <mesh castShadow receiveShadow geometry={nodes.Torus001.geometry} material={materials['Material.001']} position={[0, 0.036, 0]} scale={[0.992, 1.11, 0.992]} />
       {/* <mesh castShadow receiveShadow geometry={nodes.Plane.geometry} material={materials['Material.003']} position={[-0.049, -0.317, 0.024]} scale={[17.281, 5.091, 17.281]} /> */}
     </group>
   );
