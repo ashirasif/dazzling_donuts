@@ -20,9 +20,8 @@ export default function Home() {
           </div>
         </div>
         <div className="fixed left-0 top-0 h-screen w-screen bg-black">
-          <Canvas className="bg-gradient-to-b from-pink-950/40 from-5% to-black to-100%">
+          <Canvas>
             <Scene />
-            <OrbitControls />
           </Canvas>
         </div>
       </main>

@@ -45,6 +45,7 @@ export function Model(props: JSX.IntrinsicElements["group"]) {
       />
 
       <mesh
+        name="bread"
         castShadow
         receiveShadow
         geometry={nodes.Torus003.geometry}

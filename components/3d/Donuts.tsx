@@ -5,21 +5,42 @@ Command: npx gltfjsx@6.2.13 ./public/dazzling donuts.gltf -ts
 
 import * as THREE from "three";
 import React, { useRef } from "react";
-import { MeshRefractionMaterial, useGLTF } from "@react-three/drei";
+import { useGLTF } from "@react-three/drei";
 import { GLTF } from "three-stdlib";
+import { LayerMaterial, Texture } from "lamina";
 import { useLoader } from "@react-three/fiber";
-import { Depth, LayerMaterial, Texture } from "lamina";
 
 type GLTFResult = GLTF & {
   nodes: {
-    Torus: THREE.Mesh;
+    pink_cream: THREE.Mesh;
+    bread: THREE.Mesh;
     Torus001: THREE.Mesh;
+    bread001: THREE.Mesh;
+    BezierCurve: THREE.Mesh;
+    Torus007: THREE.Mesh;
+    bread002: THREE.Mesh;
+    Torus002: THREE.Mesh;
+    Torus003: THREE.Mesh;
+    Sphere: THREE.Mesh;
+    pink_cream001: THREE.Mesh;
+    bread003: THREE.Mesh;
+    pink_cream002: THREE.Mesh;
+    bread004: THREE.Mesh;
+    pink_cream003: THREE.Mesh;
+    bread005: THREE.Mesh;
+    Cone: THREE.Mesh;
     Plane: THREE.Mesh;
   };
   materials: {
+    chocolate: THREE.MeshStandardMaterial;
     bread: THREE.MeshStandardMaterial;
+    Material: THREE.MeshStandardMaterial;
     ["Material.001"]: THREE.MeshStandardMaterial;
+    ["Material.004"]: THREE.MeshStandardMaterial;
+    ["Material.005"]: THREE.MeshStandardMaterial;
+    ["blue marble"]: THREE.MeshStandardMaterial;
     ["Material.003"]: THREE.MeshStandardMaterial;
+    caramel: THREE.MeshStandardMaterial;
   };
 };
 
@@ -30,34 +51,115 @@ type ContextType = Record<
 
 export function Model(props: JSX.IntrinsicElements["group"]) {
   const { nodes, materials } = useGLTF("/dazzling donuts.gltf") as GLTFResult;
-  const texture = useLoader(THREE.TextureLoader, "/texture/breat_texture.jpg");
-
+  const texture = useLoader(THREE.TextureLoader, "/texture/breat_texture2.jpg");
+  const imagetex = useLoader(THREE.TextureLoader, "/texture/rasp.jpg");
+  const raspTexture = useLoader(THREE.TextureLoader, "/texture/raspberry.jpg");
   return (
     <group {...props} dispose={null}>
       <mesh
         castShadow
         receiveShadow
-        geometry={nodes.Torus.geometry}
-        position={[0, -0.001, 0]}
-      >
+        geometry={nodes.pink_cream.geometry}
+        material={materials.chocolate}
+      />
+      <mesh castShadow receiveShadow geometry={nodes.bread.geometry}>
         <LayerMaterial
-          color="rgb(211, 160, 88)" //
+          color="#d18865" //
           lighting="standard"
           bumpMap={texture}
           bumpScale={0.005}
         >
-          <Texture map={texture} alpha={0.4} />
+          <Texture map={texture} alpha={0.6} />
         </LayerMaterial>
       </mesh>
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.Torus001.geometry}
-        material={materials["Material.001"]}
-        position={[0, 0.036, 0]}
-        scale={[0.992, 1.11, 0.992]}
+        material={materials.Material}
+      >
+        <LayerMaterial
+          color="#d18865" //
+          lighting="standard"
+        >
+          <Texture map={imagetex} alpha={1} />
+        </LayerMaterial>
+      </mesh>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.bread001.geometry}
+        material={materials.bread}
       />
-      {/* <mesh castShadow receiveShadow geometry={nodes.Plane.geometry} material={materials['Material.003']} position={[-0.049, -0.317, 0.024]} scale={[17.281, 5.091, 17.281]} /> */}
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Torus007.geometry}
+        // material={materials["Material.001"]}
+      >
+        <meshStandardMaterial map={raspTexture} bumpScale={0.01} roughness={0} transparent={true} metalness={0.3} bumpMap={raspTexture} />
+      </mesh>
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.bread002.geometry}
+        material={materials.bread}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Torus002.geometry}
+        material={materials["Material.004"]}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Torus003.geometry}
+        material={materials["Material.004"]}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Sphere.geometry}
+        material={materials["Material.005"]}
+      />
+      
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.bread003.geometry}
+        material={materials["blue marble"]}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.pink_cream002.geometry}
+        material={materials["Material.003"]}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.bread004.geometry}
+        material={materials.bread}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.pink_cream003.geometry}
+        material={materials.caramel}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.bread005.geometry}
+        material={materials.bread}
+      />
+      <mesh
+        castShadow
+        receiveShadow
+        geometry={nodes.Cone.geometry}
+        material={materials.bread}
+      />
     </group>
   );
 }
