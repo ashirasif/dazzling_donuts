@@ -72,11 +72,13 @@ export function Model(props: JSX.IntrinsicElements["group"]) {
           <Texture map={texture} alpha={0.6} />
         </LayerMaterial>
       </mesh>
+
       <mesh
         castShadow
         receiveShadow
         geometry={nodes.Torus001.geometry}
         material={materials.Material}
+        position-x={0}
       >
         <LayerMaterial
           color="#d18865" //
@@ -85,12 +87,7 @@ export function Model(props: JSX.IntrinsicElements["group"]) {
           <Texture map={imagetex} alpha={1} />
         </LayerMaterial>
       </mesh>
-      <mesh
-        castShadow
-        receiveShadow
-        geometry={nodes.bread001.geometry}
-        material={materials.bread}
-      />
+      
       <mesh
         castShadow
         receiveShadow
